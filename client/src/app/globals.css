@@ -144,7 +144,7 @@ input[type="color"] {
 
 /* Search Page */
 .search {
-  @apply flex flex-col bg-background text-foreground h-full mx-auto w-3/4;
+  @apply flex flex-col text-background h-full mx-auto w-3/4;
 }
 
 .search__title {
@@ -986,7 +986,7 @@ input[type="color"] {
 }
 
 .accordion-section__chapter {
-  @apply flex items-center text-gray-400/90 py-1;
+  @apply flex flex-row items-center text-gray-400/90 py-2;
 }
 
 /* Course Card */
@@ -1421,7 +1421,7 @@ input[type="color"] {
 }
 
 .app-sidebar__title {
-  @apply text-lg font-extrabold group-data-[collapsible=icon]:hidden;
+  @apply text-lg text-primary-foreground font-extrabold group-data-[collapsible=icon]:hidden;
 }
 
 .app-sidebar__collapse-icon {
