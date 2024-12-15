@@ -9,6 +9,9 @@ import * as dynamoose from "dynamoose"
 
 /* Route Import */
 import courseRoutes from "./routes/courseRoutes"
+import userClerkRoutes from "./routes/userClerkRoutes"
+import transactionRoutes from "./routes/transactionRoutes"
+import { clerkMiddleware, createClerkClient, requireAuth } from "@clerk/express"
 
 /* Configs */
 dotenv.config()
@@ -19,6 +22,12 @@ if(!isProduction) {
     dynamoose.aws.ddb.local()
 }
 
+console.log(process.env.NODE_ENV, process.env.PORT, "is the node env")
+
+export const clerkClient = createClerkClient({
+    secretKey: process.env.CLERK_SECRET_KEY
+})
+
 const app = express()
 app.use(express.json())
 app.use(helmet())
@@ -27,6 +36,7 @@ app.use(morgan("common"))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
+app.use(clerkMiddleware())
 
 /* Routes */
 
@@ -35,6 +45,8 @@ app.get("/", (res, req) => {
 })
 
 app.use("/courses", courseRoutes)
+app.use("/users/clerk", requireAuth(), userClerkRoutes)
+app.use("/transactions", requireAuth(), transactionRoutes)
 
 
 /* Server */

@@ -1,2 +1,3 @@
 asset-download
 server/node_modules/
+server/src/.env.*

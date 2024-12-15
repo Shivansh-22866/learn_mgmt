@@ -4,6 +4,7 @@ import "./globals.css";
 import { DM_Sans } from 'next/font/google'
 import Providers from "./providers";
 import {ClerkProvider} from "@clerk/nextjs"
+import { Toaster } from "sonner";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
       >
         <Providers>
           <div className="root-layout">{children}</div>
+          <Toaster richColors closeButton />
         </Providers>
       </body>
     </html>

@@ -101,7 +101,7 @@ export const CustomFormField: React.FC<FormFieldProps> = ({
             >
               <SelectValue placeholder={placeholder} />
             </SelectTrigger>
-            <SelectContent className="w-full bg-customgreys-primarybg border-customgreys-dirtyGrey shadow">
+            <SelectContent className="w-full bg-customgreys-primarybg !text-white-100 border-customgreys-dirtyGrey shadow">
               {options?.map((option) => (
                 <SelectItem
                   key={option.value}

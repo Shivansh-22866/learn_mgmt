@@ -1101,7 +1101,7 @@ input[type="color"] {
 
 /* Loading */
 .loading {
-  @apply fixed inset-0 flex gap-2 items-center justify-center bg-background/50;
+  @apply fixed inset-0 flex gap-2 items-center justify-center bg-foreground/50;
 }
 
 .loading__spinner {
