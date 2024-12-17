@@ -29,7 +29,7 @@ const Search = () => {
   };
 
   const handleEnrollNow = (courseId: string) => {
-    router.push(`/checkout?step=1&courseId=${courseId}&showSignUp=false`);
+    router.push(`/checkout?step=1&id=${courseId}&showSignUp=false`);
   };
 
   useEffect(() => {
