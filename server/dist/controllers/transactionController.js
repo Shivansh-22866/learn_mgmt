@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTransaction = exports.createStripePaymentIntent = void 0;
+exports.createTransaction = exports.listTransactions = exports.createStripePaymentIntent = void 0;
 const stripe_1 = __importDefault(require("stripe"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const courseModel_1 = __importDefault(require("../models/courseModel"));
@@ -49,6 +49,18 @@ const createStripePaymentIntent = (req, res) => __awaiter(void 0, void 0, void 0
     }
 });
 exports.createStripePaymentIntent = createStripePaymentIntent;
+const listTransactions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let { userId } = req.query;
+    console.log("UserID: ", userId);
+    try {
+        const transaction = userId ? yield transactionModel_1.default.query("userId").eq(userId).exec() : yield transactionModel_1.default.scan().exec();
+        res.json({ message: "Transactions retrieved successfully", data: transaction });
+    }
+    catch (err) {
+        res.status(500).json({ message: "Error receiving transactions", err });
+    }
+});
+exports.listTransactions = listTransactions;
 const createTransaction = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, courseId, transactionId, amount, paymentProvider } = req.body;
     try {
